@@ -160,13 +160,26 @@ preloaded_index = preload_index()
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
 # submit3 = st.button('Run Query')
+min_value = 0
+max_value = 1
+default_value = 0
+step = 0.1
+temp_value = st.slider('Select a value', min_value, max_value, default_value, step = step)
+st.write('Temperature value:', temp_value)
 
-query_engine = preloaded_index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=3)
+
+min_value = 2
+max_value = 10
+default_value = 2
+k_value = st.slider('Select a value', min_value, max_value, default_value, step = step)
+st.write('Top-K value:', k_value)
+
+
 
 if st.button("Run Query") and text is not None:
     print("Checking if index is working")
+    query_engine = preloaded_index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=k_value)
     response = query_engine.query(text)
-
     st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">{response}</div>',unsafe_allow_html=True)
     #     f'<div style="width: 300px; height: 200px; word-wrap: break-word; overflow-y: auto;">{text}</div>',
     # <div style="width: 40em;height: auto;word-wrap: break-word;white-space: break-spaces;overflow: scroll;">
