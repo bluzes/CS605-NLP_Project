@@ -141,6 +141,8 @@ def query_index(_index, query_text):
     # response = query_engine.query("Keypoints of performance comparison of all given companies in Q4 2021")
     # print(response)
     response = _index.as_query_engine(response_mode = "compact",verbose = True, similarity_top_k = 3).query(query_text)
+    print(response)
+    st.write(response)
     return str(response)
 
 preloaded_doc_summary_index = None

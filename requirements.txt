@@ -1,4 +1,3 @@
-torch
 openai
 llama-index
 langchain
