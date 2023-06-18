@@ -161,7 +161,7 @@ text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
 # submit3 = st.button('Run Query')
 
-query_engine = preloaded_index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=3)
+query_engine = preloaded_index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=3,streaming=True)
 
 if st.button("Run Query") and text is not None:
     print("Checking if index is working")
