@@ -151,6 +151,8 @@ if st.button("Run Query") and text is not None:
     response = query_index(preloaded_index, text)
     print("Checking if response exists")
     print(response)
+    print("Checking text")
+    print(text)
     print("***** END OF CHECK******")
     st.markdown(response)
 
