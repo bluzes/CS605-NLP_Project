@@ -177,7 +177,7 @@ st.write('Top-K value:', k_value)
 
 
 # Define the options for the dropdown
-options = {'default':'','compact':'compact', 'tree summary':'tree_summarize', 'mock run':'no_text'}
+options = {'default':'refine','compact':'compact', 'tree summary':'tree_summarize', 'mock run':'no_text'}
 
 # Create the dropdown box
 selected_option = st.selectbox('Query mode option', options.keys())
