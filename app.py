@@ -78,6 +78,7 @@ from langchain.chat_models import ChatOpenAI
 
 index_name = "./saved_index/new"
 pre_loaded_documents_folder = "./datasets/preloaded/small"
+documents_folder = "./datasets/csv"
 def preload_index():
     documents = SimpleDirectoryReader(pre_loaded_documents_folder).load_data()
     try:
