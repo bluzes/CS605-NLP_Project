@@ -200,8 +200,9 @@ if st.button("Run Query") and text is not None:
     response = query_engine.query(text)
     chat_history.append({text:response})
     for chat in chat_history:
-        st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">{chat.keys()}</div>',unsafe_allow_html=True)
-        st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">{chat.value()}</div>',unsafe_allow_html=True)
+        for k in chat.keys():
+            st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">{k}</div>',unsafe_allow_html=True)
+            st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">{chat[k]}</div>',unsafe_allow_html=True)
 
     #     f'<div style="width: 300px; height: 200px; word-wrap: break-word; overflow-y: auto;">{text}</div>',
     # <div style="width: 40em;height: auto;word-wrap: break-word;white-space: break-spaces;overflow: scroll;">
