@@ -149,6 +149,9 @@ text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 if st.button("Run Query") and text is not None:
     print("Checking if index is working")
     response = query_index(preloaded_index, text)
+    print("Checking if response exists")
+    print(response)
+    print("***** END OF CHECK******")
     st.markdown(response)
 
     llm_col, embed_col = st.columns(2)
