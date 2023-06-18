@@ -151,11 +151,11 @@ preloaded_index = preload_index()
 # index = initialize_index(index_name, documents_folder)
 
 # Testing debugging
-st.write("Debugging Starts")
-st.write(type(preload_index))
-st.write(preload_index)
-# st.write(preload_index.docstore.docs)
-st.write("*** End of Debug")
+# st.write("Debugging Starts")
+# st.write(type(preload_index))
+# st.write(preload_index)
+# # st.write(preload_index.docstore.docs)
+# st.write("*** End of Debug")
 # End Test
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
@@ -167,7 +167,7 @@ if st.button("Run Query") and text is not None:
     print("Checking if index is working")
     response = query_engine.query(text)
 
-    st.markdown(f'<div style="width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{response}</div>')
+    st.markdown(f'<div style="width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{response}</div>',unsafe_allow_html=True)
 
     llm_col, embed_col = st.columns(2)
     with llm_col:
