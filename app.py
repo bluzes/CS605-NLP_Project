@@ -11,6 +11,7 @@ from llama_index.indices.document_summary import DocumentSummaryIndex
 from langchain.chat_models import ChatOpenAI
 from llama_index.indices.document_summary import DocumentSummaryIndexRetriever
 from llama_index import MockLLMPredictor, ServiceContext, MockEmbedding
+import openai
 
 import os
 import pandas as pd
