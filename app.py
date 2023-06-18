@@ -133,18 +133,18 @@ def initialize_index(index_name, documents_folder):
 
 
 
-@st.cache_data(max_entries=200, persist=True)
-def query_index(_index, query_text):
-    if _index is None:
-        return "Please initialize the index!"
+# @st.cache_data(max_entries=200, persist=True)
+# def query_index(_index, query_text):
+#     if _index is None:
+#         return "Please initialize the index!"
 
-    # query_engine = index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=5)
-    # response = query_engine.query("Keypoints of performance comparison of all given companies in Q4 2021")
-    # print(response)
-    response = _index.as_query_engine(response_mode = "compact",verbose = True, similarity_top_k = 3).query(query_text)
-    print(response)
-    st.write(response)
-    return str(response)
+#     # query_engine = index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=5)
+#     # response = query_engine.query("Keypoints of performance comparison of all given companies in Q4 2021")
+#     # print(response)
+#     response = _index.as_query_engine(response_mode = "compact",verbose = True, similarity_top_k = 3).query(query_text)
+#     print(response)
+#     st.write(response)
+#     return str(response)
 
 preloaded_doc_summary_index = None
 preloaded_index = preload_index()
@@ -154,9 +154,11 @@ text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
 # submit3 = st.button('Run Query')
 
+query_engine = preloaded_index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=3)
+
 if st.button("Run Query") and text is not None:
     print("Checking if index is working")
-    response = query_index(preloaded_index, text)
+    response = query_engine.query(text)
     print("Checking if response exists")
     print(response)
     print("Checking text")
