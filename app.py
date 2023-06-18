@@ -93,13 +93,13 @@ def preload_index():
     try:
         storage_context = StorageContext.from_defaults(persist_dir=preloaded_index)
         index = load_index_from_storage(storage_context,index_id="Pre_Loaded_Small_2_Docs") # this index should contain the full documents from through documents 1 & 2
-        doc_summary_index = load_index_from_storage(storage_context, index_id ="3a995849-05eb-433a-8b81-7155b52c33c5") # this index should contain the summary
+        # doc_summary_index = load_index_from_storage(storage_context, index_id ="3a995849-05eb-433a-8b81-7155b52c33c5") # this index should contain the summary
         print("Loaded")
         print("Checking if index is properly loaded")
         print(index.docstore.docs)
         print("----- End of Check -------")
         st.write("Index and Doc Summary Index Loaded")
-        return index, doc_summary_index
+        return index, None
     except Exception as e:
         # index = GPTVectorStoreIndex([])
         # index.insert(documents[0])
