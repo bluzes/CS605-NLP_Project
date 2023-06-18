@@ -42,6 +42,8 @@ if file is not None:
 # Two separated text box inputs
 input1 = st.text_input('Enter text input 1')
 input2 = st.text_input('Enter text input 2')
+submit1 = st.button('Submit1')
+submit2 = st.button('Submit2')
 
 
 # Submit button
@@ -57,7 +59,7 @@ if st.button('Submit1'):
     else:
         st.error('Error occurred during API request.')
 
-if st.button('Submit1'):
+if st.button('Submit2'):
     # Send the inputs to the Flask API
     data = {'input1': input1, 'input2': input2}
     response = requests.post(f'{API_URL}/process', json=data)
@@ -121,6 +123,7 @@ if index is None:
     st.warning("Please enter your api key first.")
 
 text = st.text_input("Query text:", value="What did the author do growing up?")
+submit3 = st.button('Run Query')
 
 if st.button("Run Query") and text is not None:
     response = query_index(index, text)
