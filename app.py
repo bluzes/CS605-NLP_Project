@@ -160,9 +160,9 @@ preloaded_index = preload_index()
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
 # submit3 = st.button('Run Query')
-min_value = 0
-max_value = 1
-default_value = 0
+min_value = 0.0
+max_value = 1.0
+default_value = 0.0
 step = 0.1
 temp_value = st.slider('Select a value', min_value, max_value, default_value, step = step)
 st.write('Temperature value:', temp_value)
