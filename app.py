@@ -131,7 +131,7 @@ def initialize_index(index_name, documents_folder):
 
     return index
 
-place_holder = st.empty()
+
 
 @st.cache_data(max_entries=200, persist=True)
 def query_index(_index, query_text):
@@ -141,10 +141,9 @@ def query_index(_index, query_text):
     # query_engine = index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=5)
     # response = query_engine.query("Keypoints of performance comparison of all given companies in Q4 2021")
     # print(response)
-    response = _index.as_query_engine(response_mode = "compact",verbose = True, similarity_top_k = 3, streaming=True).query(query_text)
+    response = _index.as_query_engine(response_mode = "compact",verbose = True, similarity_top_k = 3).query(query_text)
     print(response)
-    # st.write(response)
-    place_holder.write(response)
+    st.write(response)
     return str(response)
 
 preloaded_doc_summary_index = None
