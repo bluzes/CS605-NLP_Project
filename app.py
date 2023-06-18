@@ -199,10 +199,9 @@ if st.button("Run Query") and text is not None:
     query_engine = preloaded_index.as_query_engine(response_mode= selected_value,verbose=True,similarity_top_k=k_value)
     response = query_engine.query(text)
     chat_history.append({text:response})
-    for chat in chat_history:
-        for k in chat.keys():
-            st.markdown(f'<div style="width: 40em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {k}</div>',unsafe_allow_html=True)
-            st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {chat[k]}</div>',unsafe_allow_html=True)
+
+    col1.markdown(f'<div style="width: 40em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
+    col1.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
 
     #     f'<div style="width: 300px; height: 200px; word-wrap: break-word; overflow-y: auto;">{text}</div>',
     # <div style="width: 40em;height: auto;word-wrap: break-word;white-space: break-spaces;overflow: scroll;">
@@ -221,7 +220,7 @@ if st.button("Run Query") and text is not None:
     llm_col, embed_col = st.columns(2)
     with llm_col:
         st.markdown(
-            f"LLM Tokens Used: {preloaded_index.service_context.llm_predictor._last_token_usage}"
+            f"\nLLM Tokens Used: {preloaded_index.service_context.llm_predictor._last_token_usage}"
         )
 
     with embed_col:
