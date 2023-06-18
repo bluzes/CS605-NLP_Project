@@ -154,7 +154,7 @@ preloaded_index = preload_index()
 st.write("Debugging Starts")
 st.write(type(preload_index))
 st.write(preload_index)
-st.write(preload_index.docstore.docs)
+# st.write(preload_index.docstore.docs)
 st.write("*** End of Debug")
 # End Test
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
