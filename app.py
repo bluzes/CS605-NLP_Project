@@ -191,6 +191,7 @@ col1.text('Selected option: {}'.format(selected_option))
 # End Test
 
 if 'chat_history' not in st.session_state:
+    @st.cache_data(max_entries=200, persist=True)
     st.session_state.chat_history = []
 
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
@@ -203,6 +204,7 @@ if st.button("Run Query") and text is not None:
     response = query_engine.query(text)
     st.session_state.chat_history.append({text:response})
 
+    @st.cache_data(max_entries=200, persist=True)
     col3.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
     col3.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
 
