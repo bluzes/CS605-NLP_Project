@@ -84,7 +84,7 @@ def preload_index():
     llm_predictor_chatgpt = LLMPredictor(llm=ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo"))
     service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor_chatgpt, chunk_size=2048)
     try:
-        storage_context = StorageContext.from_defaults(persist_dir=index_name)
+        storage_context = StorageContext.from_defaults(persist_dir=pre_loaded_documents_folder)
         index = load_index_from_storage(storage_context,index_id="Pre_Loaded_Small_2_Docs") # this index should contain the full documents from through documents 1 & 2
         doc_summary_index = load_index_from_storage(storage_context, index_id ="3a995849-05eb-433a-8b81-7155b52c33c5") # this index should contain the summary
         st.write("Index and Doc Summary Index Loaded")
