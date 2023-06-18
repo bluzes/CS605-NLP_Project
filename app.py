@@ -79,6 +79,9 @@ from langchain.chat_models import ChatOpenAI
 index_name = "./saved_index/new"
 pre_loaded_documents_folder = "./datasets/preloaded/small"
 documents_folder = "./datasets/csv"
+
+st.write("Testing Printing to Streamlit Logs")
+
 def preload_index():
     documents = SimpleDirectoryReader(pre_loaded_documents_folder).load_data()
     llm_predictor_chatgpt = LLMPredictor(llm=ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo"))
