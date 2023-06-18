@@ -100,7 +100,7 @@ def preload_index():
         print("----- End of Check -------")
         st.write("Index and Doc Summary Index Loaded")
         return index, doc_summary_index
-    except as e:
+    except Exception as e:
         # index = GPTVectorStoreIndex([])
         # index.insert(documents[0])
         print("Exception: ",e)
