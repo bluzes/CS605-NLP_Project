@@ -145,7 +145,7 @@ def query_index(_index, query_text):
 
 preloaded_doc_summary_index = None
 preloaded_index = preload_index()
-index = initialize_index(index_name, documents_folder)
+# index = initialize_index(index_name, documents_folder)
 
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 # submit3 = st.button('Run Query')
@@ -163,12 +163,12 @@ if st.button("Run Query") and text is not None:
     llm_col, embed_col = st.columns(2)
     with llm_col:
         st.markdown(
-            f"LLM Tokens Used: {index.service_context.llm_predictor._last_token_usage}"
+            f"LLM Tokens Used: {preloaded_index.service_context.llm_predictor._last_token_usage}"
         )
 
     with embed_col:
         st.markdown(
-            f"Embedding Tokens Used: {index.service_context.embed_model._last_token_usage}"
+            f"Embedding Tokens Used: {preloaded_index.service_context.embed_model._last_token_usage}"
         )
 else:
     print("Checking stuff")
