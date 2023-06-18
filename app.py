@@ -131,6 +131,7 @@ def initialize_index(index_name, documents_folder):
 
     return index
 
+place_holder = st.empty()
 
 @st.cache_data(max_entries=200, persist=True)
 def query_index(_index, query_text):
@@ -151,7 +152,7 @@ preloaded_index = preload_index()
 # index = initialize_index(index_name, documents_folder)
 
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
-place_holder = st.empty()
+
 # submit3 = st.button('Run Query')
 
 if st.button("Run Query") and text is not None:
