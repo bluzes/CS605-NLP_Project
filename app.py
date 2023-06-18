@@ -232,8 +232,13 @@ if st.button("Run Query") and text is not None:
         )
 
 clear_history = st.button("Clear History")
-if clear_history:
-    chat_history = []
+if st.session_state.chat_history:
+    st.session_state.chat_history = []
+
+for chat in st.session_state.chat_history:
+    for k in chat.keys():
+        col4.markdown(f'<div style="width: 40em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {k}</div>',unsafe_allow_html=True)
+        col4.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {chat[k]}</div>',unsafe_allow_html=True)
 # if 'response' not in st.session_state:
 #     st.session_state.response = ''
 
