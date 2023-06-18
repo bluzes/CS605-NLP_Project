@@ -137,10 +137,10 @@ def query_index(_index, query_text):
     return str(response)
 
 
-preloaded_doc_summary_index, preloaded_index = preload_index()
+preloaded_index, preloaded_doc_summary_index = preload_index()
 index = initialize_index(index_name, documents_folder)
 
-text = st.text_input("Query text:", value="What did the author do growing up?")
+text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 # submit3 = st.button('Run Query')
 
 if st.button("Run Query") and text is not None:
