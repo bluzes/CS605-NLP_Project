@@ -193,6 +193,7 @@ text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
 chat_history = []
 
+col3, col4 = st.columns(2)
 
 if st.button("Run Query") and text is not None:
     print("Checking if index is working")
@@ -200,8 +201,8 @@ if st.button("Run Query") and text is not None:
     response = query_engine.query(text)
     chat_history.append({text:response})
 
-    col1.markdown(f'<div style="width: 40em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
-    col1.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
+    col3.markdown(f'<div style="width: 40em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
+    col3.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
 
     #     f'<div style="width: 300px; height: 200px; word-wrap: break-word; overflow-y: auto;">{text}</div>',
     # <div style="width: 40em;height: auto;word-wrap: break-word;white-space: break-spaces;overflow: scroll;">
