@@ -198,6 +198,11 @@ text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 col3, col4 = st.columns(2)
 
 @st.cache_data(max_entries=200, persist=True)
+def print_chat_history():
+    for chat in st.session_state.chat_history:
+        for k in chat.keys():
+            col4.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {k}</div>',unsafe_allow_html=True)
+            col4.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {chat[k]}</div>',unsafe_allow_html=True)
 if st.button("Run Query") and text is not None:
     print("Checking if index is working")
     query_engine = preloaded_index.as_query_engine(response_mode= selected_value,verbose=True,similarity_top_k=k_value)
@@ -231,10 +236,8 @@ if st.button("Run Query") and text is not None:
         st.markdown(
             f"Embedding Tokens Used: {preloaded_index.service_context.embed_model._last_token_usage}"
         )
-    for chat in st.session_state.chat_history:
-        for k in chat.keys():
-            col4.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {k}</div>',unsafe_allow_html=True)
-            col4.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {chat[k]}</div>',unsafe_allow_html=True)
+    print_chat_history()
+
 
 clear_history = st.button("Clear History")
 if st.session_state.chat_history:
