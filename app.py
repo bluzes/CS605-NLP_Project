@@ -110,21 +110,6 @@ def preload_index():
         st.write(e)
         return index
 
-def get_session():
-    session_id = get_report_ctx().session_id
-    this_session = None
-    current_server = Server.get_current()
-    if hasattr(current_server, '_session_infos'):
-        this_session = current_server._session_infos.get(session_id)
-    if this_session:
-        return this_session.session
-    return None
-
-# Initialize chat history
-session = get_session()
-if session is None:
-    session = {}
-    session['chat_history'] = []
 
 @st.cache_resource
 def initialize_index(index_name, documents_folder):
@@ -212,8 +197,9 @@ text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
 col3, col4 = st.columns(2)
 
+
 def print_chat_history():
-    for chat in session['chat_history']:
+    for chat in st.session_state.chat_history:
         for k in chat.keys():
             col4.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {k}</div>',unsafe_allow_html=True)
             col4.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {chat[k]}</div>',unsafe_allow_html=True)
@@ -221,7 +207,7 @@ if st.button("Run Query") and text is not None:
     print("Checking if index is working")
     query_engine = preloaded_index.as_query_engine(response_mode= selected_value,verbose=True,similarity_top_k=k_value)
     response = query_engine.query(text)
-    session['chat_history'].append({text:response})
+    st.session_state.chat_history.append({text:response})
 
     col3.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
     col3.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
