@@ -76,8 +76,21 @@ input2 = st.text_input('Enter text input 2')
 
 from langchain.chat_models import ChatOpenAI
 
-index_name = "./saved_index"
-documents_folder = "./documents"
+index_name = "./saved_index/new"
+pre_loaded_documents_folder = "./datasets/preloaded/small"
+def preload_index():
+    documents = SimpleDirectoryReader(pre_loaded_documents_folder).load_data()
+    try:
+        storage_context = StorageContext.from_defaults(persist_dir=index_name)
+        index = load_index_from_storage("36150b1e-84d5-4184-ba95-3e107970e716") # this index should contain the full documents from through documents 1 & 2
+        doc_summary_index = load_index_from_storage(storage_context, index_id ="3a995849-05eb-433a-8b81-7155b52c33c5") # this index should contain the summary
+        print("Index and Doc Summary Index Loaded")
+        return index, doc_summary_index
+    except:
+        index = GPTVectorStoreIndex([])
+        index.insert(documents[0])
+        print("New Index Created")
+        return index, None
 
 
 @st.cache_resource
@@ -109,14 +122,14 @@ def query_index(_index, query_text):
     return str(response)
 
 
-
+preloaded_doc_summary_index, preloaded_index = preload_index()
 index = initialize_index(index_name, documents_folder)
 
 text = st.text_input("Query text:", value="What did the author do growing up?")
 # submit3 = st.button('Run Query')
 
 if st.button("Run Query") and text is not None:
-    response = query_index(index, text)
+    response = query_index(preloaded_index, text)
     st.markdown(response)
 
     llm_col, embed_col = st.columns(2)
