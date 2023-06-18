@@ -1,5 +1,5 @@
 torch
-openai==0.27.8
-llama-index=0.6.27
-langchain==0.0.202
-pandas==1.5.3
+openai
+llama-index
+langchain
+pandas
