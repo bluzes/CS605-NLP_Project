@@ -177,10 +177,11 @@ st.write('Top-K value:', k_value)
 
 
 # Define the options for the dropdown
-options = ['','compact', 'tree_summarize', 'no_text']
+options = ['default':'','compact':'compact', 'tree summary':'tree_summarize', 'mock run':'no_text']
 
 # Create the dropdown box
-selected_option = st.selectbox('Select an option', options)
+selected_option = st.selectbox('Query mode option', options.keys())
+selected_value = options[selected_option]
 
 # Display the selected option
 st.write('Selected option:', selected_option)
@@ -188,7 +189,7 @@ st.write('Selected option:', selected_option)
 
 if st.button("Run Query") and text is not None:
     print("Checking if index is working")
-    query_engine = preloaded_index.as_query_engine(response_mode= selected_option,verbose=True,similarity_top_k=k_value)
+    query_engine = preloaded_index.as_query_engine(response_mode= selected_value,verbose=True,similarity_top_k=k_value)
     response = query_engine.query(text)
     st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">{response}</div>',unsafe_allow_html=True)
     #     f'<div style="width: 300px; height: 200px; word-wrap: break-word; overflow-y: auto;">{text}</div>',
