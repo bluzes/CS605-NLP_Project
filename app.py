@@ -167,12 +167,7 @@ if st.button("Run Query") and text is not None:
     print("Checking if index is working")
     response = query_engine.query(text)
 
-    print("Checking if response exists")
-    print(response)
-    print("Checking text")
-    print(text)
-    print("***** END OF CHECK******")
-    st.markdown(response)
+    st.markdown(f'<div style="width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{response}</div>')
 
     llm_col, embed_col = st.columns(2)
     with llm_col:
