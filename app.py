@@ -161,3 +161,7 @@ if st.button("Run Query") and text is not None:
         st.markdown(
             f"Embedding Tokens Used: {index.service_context.embed_model._last_token_usage}"
         )
+else:
+    print("Checking stuff")
+    print(text)
+    print("******END*******")
