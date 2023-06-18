@@ -150,6 +150,13 @@ preloaded_doc_summary_index = None
 preloaded_index = preload_index()
 # index = initialize_index(index_name, documents_folder)
 
+# Testing debugging
+st.write("Debugging Starts")
+st.write(type(preload_index))
+st.write(preload_index)
+st.write(preload_index.docstore.docs)
+st.write("*** End of Debug")
+# End Test
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
 # submit3 = st.button('Run Query')
