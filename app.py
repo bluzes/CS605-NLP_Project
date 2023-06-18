@@ -156,27 +156,41 @@ text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
 query_engine = preloaded_index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=3)
 
-if st.button("Run Query") and text is not None:
-    print("Checking if index is working")
-    response = query_engine.query(text)
-    print("Checking if response exists")
-    print(response)
-    print("Checking text")
-    print(text)
-    print("***** END OF CHECK******")
-    st.markdown(response)
+# if st.button("Run Query") and text is not None:
+#     print("Checking if index is working")
+#     response = query_engine.query(text)
 
-    llm_col, embed_col = st.columns(2)
-    with llm_col:
-        st.markdown(
-            f"LLM Tokens Used: {preloaded_index.service_context.llm_predictor._last_token_usage}"
-        )
+#     print("Checking if response exists")
+#     print(response)
+#     print("Checking text")
+#     print(text)
+#     print("***** END OF CHECK******")
+#     st.markdown(response)
 
-    with embed_col:
-        st.markdown(
-            f"Embedding Tokens Used: {preloaded_index.service_context.embed_model._last_token_usage}"
-        )
-else:
-    print("Checking stuff")
-    print(text)
-    print("******END*******")
+#     llm_col, embed_col = st.columns(2)
+#     with llm_col:
+#         st.markdown(
+#             f"LLM Tokens Used: {preloaded_index.service_context.llm_predictor._last_token_usage}"
+#         )
+
+#     with embed_col:
+#         st.markdown(
+#             f"Embedding Tokens Used: {preloaded_index.service_context.embed_model._last_token_usage}"
+#         )
+# else:
+#     print("Checking stuff")
+#     print(text)
+#     print("******END*******")
+
+if 'response' not in st.session_state:
+    st.session_state.response = ''
+
+
+def run_query():
+    st.session_state.response = query_engine.query(text)
+
+st.button("Run Query", onclick=run_query)
+if st.session_state.response:
+    st.subheader("Response: ")
+    st.success(st.session_state.response)
+
