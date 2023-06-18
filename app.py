@@ -153,7 +153,7 @@ preloaded_index = preload_index()
 
 # submit3 = st.button('Run Query')
 
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 
 temp_min_value = 0.0
 temp_max_value = 1.0
