@@ -203,8 +203,8 @@ if st.button("Run Query") and text is not None:
     response = query_engine.query(text)
     st.session_state.chat_history.append({text:response})
 
-    col3.markdown(f'<div style="width: 40em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
-    col3.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
+    col3.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
+    col3.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
 
     #     f'<div style="width: 300px; height: 200px; word-wrap: break-word; overflow-y: auto;">{text}</div>',
     # <div style="width: 40em;height: auto;word-wrap: break-word;white-space: break-spaces;overflow: scroll;">
@@ -232,8 +232,8 @@ if st.button("Run Query") and text is not None:
         )
     for chat in st.session_state.chat_history:
         for k in chat.keys():
-            col4.markdown(f'<div style="width: 40em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {k}</div>',unsafe_allow_html=True)
-            col4.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {chat[k]}</div>',unsafe_allow_html=True)
+            col4.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {k}</div>',unsafe_allow_html=True)
+            col4.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {chat[k]}</div>',unsafe_allow_html=True)
 
 clear_history = st.button("Clear History")
 if st.session_state.chat_history:
