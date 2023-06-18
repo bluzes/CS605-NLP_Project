@@ -29,10 +29,10 @@ logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 # API_URL = 'http://localhost:5000' # No flask required atm
 
 # Header
-st.header('My Streamlit App')
+st.header('Finasse')
 
 # Title
-st.title('Welcome to my app!')
+st.title('Welcome to Finasse! Your personal Financial Assistant for analysis')
 
 # Placeholder body content
 st.write('This is the body of my app.')
@@ -152,18 +152,21 @@ preloaded_index = preload_index()
 
 
 # submit3 = st.button('Run Query')
+
+col1, col2 = st.beta_columns(2)
+
 temp_min_value = 0.0
 temp_max_value = 1.0
 temp_default_value = 0.0
 step = 0.1
-temp_value = st.slider('Select a value', temp_min_value, temp_max_value, temp_default_value, step = step)
+temp_value = col2.slider('Select a value', temp_min_value, temp_max_value, temp_default_value, step = step)
 st.write('Temperature value:', temp_value)
 
 
 k_min_value = 2
 k_max_value = 10
 k_default_value = 2
-k_value = st.slider('Select a value', k_min_value, k_max_value, k_default_value)
+k_value = col2.slider('Select a value', k_min_value, k_max_value, k_default_value)
 st.write('Top-K value:', k_value)
 
 
@@ -172,7 +175,7 @@ st.write('Top-K value:', k_value)
 options = {'default':'refine','compact':'compact', 'tree summary':'tree_summarize', 'mock run':'no_text'}
 
 # Create the dropdown box
-selected_option = st.selectbox('Query mode option', options.keys())
+selected_option = col1.selectbox('Query mode option', options.keys())
 selected_value = options[selected_option]
 
 # Display the selected option
