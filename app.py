@@ -17,6 +17,7 @@ st.write('This is the body of my app.')
 file = st.file_uploader('Upload a file')
 
 if file is not None:
+    pass
     # Process the uploaded file
     # Your code here
 
