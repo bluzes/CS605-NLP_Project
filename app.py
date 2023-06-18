@@ -160,14 +160,14 @@ temp_max_value = 1.0
 temp_default_value = 0.0
 step = 0.1
 temp_value = col2.slider('Select a value', temp_min_value, temp_max_value, temp_default_value, step = step)
-st.write('Temperature value:', temp_value)
+col2.write('Temperature value:', temp_value)
 
 
 k_min_value = 2
 k_max_value = 10
 k_default_value = 2
 k_value = col2.slider('Select a value', k_min_value, k_max_value, k_default_value)
-st.write('Top-K value:', k_value)
+col2.write('Top-K value:', k_value)
 
 
 
@@ -179,7 +179,7 @@ selected_option = col1.selectbox('Query mode option', options.keys())
 selected_value = options[selected_option]
 
 # Display the selected option
-st.write('Selected option:', selected_option)
+col1.write('Selected option:', selected_option)
 
 
 # Testing debugging
