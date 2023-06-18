@@ -99,13 +99,13 @@ def preload_index():
         print(index.docstore.docs)
         print("----- End of Check -------")
         st.write("Index and Doc Summary Index Loaded")
-        return index, None
+        return index
     except Exception as e:
         # index = GPTVectorStoreIndex([])
         # index.insert(documents[0])
         print("Exception: ",e)
         st.write(e)
-        return index, None
+        return index
 
 
 @st.cache_resource
@@ -136,14 +136,15 @@ def query_index(_index, query_text):
     response = _index.as_query_engine().query(query_text)
     return str(response)
 
-
-preloaded_index, preloaded_doc_summary_index = preload_index()
+preloaded_doc_summary_index = None
+preloaded_index = preload_index()
 index = initialize_index(index_name, documents_folder)
 
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 # submit3 = st.button('Run Query')
 
 if st.button("Run Query") and text is not None:
+    print("Checking if index is working")
     response = query_index(preloaded_index, text)
     st.markdown(response)
 
