@@ -80,25 +80,31 @@ input2 = st.text_input('Enter text input 2')
 from langchain.chat_models import ChatOpenAI
 
 index_name = "./saved_index/new"
+preloaded_index = "./saved_index/preloaded"
 pre_loaded_documents_folder = "./datasets/preloaded/small"
 documents_folder = "./datasets/csv"
 
-st.write("Testing Printing to Streamlit Logs")
+print("Testing Printing to Streamlit Logs")
 
 def preload_index():
     documents = SimpleDirectoryReader(pre_loaded_documents_folder).load_data()
     llm_predictor_chatgpt = LLMPredictor(llm=ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo"))
     service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor_chatgpt, chunk_size=2048)
     try:
-        storage_context = StorageContext.from_defaults(persist_dir=pre_loaded_documents_folder)
+        storage_context = StorageContext.from_defaults(persist_dir=preloaded_index)
         index = load_index_from_storage(storage_context,index_id="Pre_Loaded_Small_2_Docs") # this index should contain the full documents from through documents 1 & 2
         doc_summary_index = load_index_from_storage(storage_context, index_id ="3a995849-05eb-433a-8b81-7155b52c33c5") # this index should contain the summary
+        print("Loaded")
+        print("Checking if index is properly loaded")
+        print(index.docstore.docs)
+        print("----- End of Check -------")
         st.write("Index and Doc Summary Index Loaded")
         return index, doc_summary_index
-    except:
-        index = GPTVectorStoreIndex([])
-        index.insert(documents[0])
-        st.write("New Index Created")
+    except as e:
+        # index = GPTVectorStoreIndex([])
+        # index.insert(documents[0])
+        print("Exception: ",e)
+        st.write(e)
         return index, None
 
 
