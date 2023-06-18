@@ -189,7 +189,7 @@ if 'response' not in st.session_state:
 def run_query():
     st.session_state.response = query_engine.query(text)
 
-st.button("Run Query", onclick=run_query)
+st.button("Run Query", on_click=run_query)
 if st.session_state.response:
     st.subheader("Response: ")
     st.success(st.session_state.response)
