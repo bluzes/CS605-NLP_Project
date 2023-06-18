@@ -136,7 +136,11 @@ def initialize_index(index_name, documents_folder):
 def query_index(_index, query_text):
     if _index is None:
         return "Please initialize the index!"
-    response = _index.as_query_engine(response_mode = "compact").query(query_text)
+
+    # query_engine = index.as_query_engine(response_mode= "compact",verbose=True,similarity_top_k=5)
+    # response = query_engine.query("Keypoints of performance comparison of all given companies in Q4 2021")
+    # print(response)
+    response = _index.as_query_engine(response_mode = "compact",verbose = True, similarity_top_k = 3).query(query_text)
     return str(response)
 
 preloaded_doc_summary_index = None
