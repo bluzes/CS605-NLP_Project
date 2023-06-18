@@ -22,6 +22,9 @@ import sys
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
+
 # Flask API endpoint
 # API_URL = 'http://localhost:5000' # No flask required atm
 
