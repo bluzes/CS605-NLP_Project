@@ -96,7 +96,10 @@ def preload_index():
         # doc_summary_index = load_index_from_storage(storage_context, index_id ="3a995849-05eb-433a-8b81-7155b52c33c5") # this index should contain the summary
         print("Loaded")
         print("Checking if index is properly loaded")
-        print(index)
+        if index:
+            print(index)
+        else:
+            print("Index Not Loaded")
         print("----- End of Check -------")
         st.write("Index and Doc Summary Index Loaded")
         return index
@@ -133,7 +136,7 @@ def initialize_index(index_name, documents_folder):
 def query_index(_index, query_text):
     if _index is None:
         return "Please initialize the index!"
-    response = _index.as_query_engine().query(query_text)
+    response = _index.as_query_engine(response_mode = "compact").query(query_text)
     return str(response)
 
 preloaded_doc_summary_index = None
