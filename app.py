@@ -19,8 +19,10 @@ from langchain import OpenAI
 import logging
 import sys
 
+openai.api_key = os.environ["OPENAI_API_KEY"]
+
 # Flask API endpoint
-API_URL = 'http://localhost:5000'
+# API_URL = 'http://localhost:5000' # No flask required atm
 
 # Header
 st.header('My Streamlit App')
@@ -106,7 +108,7 @@ def query_index(_index, query_text):
     return str(response)
 
 
-os.environ["OPENAI_API_KEY"] = api_key
+
 index = initialize_index(index_name, documents_folder)
 
 text = st.text_input("Query text:", value="What did the author do growing up?")
