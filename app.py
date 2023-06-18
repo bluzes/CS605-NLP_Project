@@ -189,9 +189,11 @@ col1.text('Selected option: {}'.format(selected_option))
 # # st.write(preload_index.docstore.docs)
 # st.write("*** End of Debug")
 # End Test
-text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
-chat_history = []
+if 'chat_history' not in st.session_state:
+    st.session_state.chat_history = []
+
+text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
 col3, col4 = st.columns(2)
 
@@ -199,7 +201,7 @@ if st.button("Run Query") and text is not None:
     print("Checking if index is working")
     query_engine = preloaded_index.as_query_engine(response_mode= selected_value,verbose=True,similarity_top_k=k_value)
     response = query_engine.query(text)
-    chat_history.append({text:response})
+    st.session_state.chat_history.append({text:response})
 
     col3.markdown(f'<div style="width: 40em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
     col3.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
