@@ -191,15 +191,18 @@ col1.text('Selected option: {}'.format(selected_option))
 # End Test
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
-
+chat_history = []
 
 
 if st.button("Run Query") and text is not None:
     print("Checking if index is working")
     query_engine = preloaded_index.as_query_engine(response_mode= selected_value,verbose=True,similarity_top_k=k_value)
     response = query_engine.query(text)
-    st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">{response}</div>',unsafe_allow_html=True)
-    st.text_area(response)
+    chat_history.append({text:response})
+    for chat in chat_history:
+        st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">{chat.keys()}</div>',unsafe_allow_html=True)
+        st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">{chat.value()}</div>',unsafe_allow_html=True)
+
     #     f'<div style="width: 300px; height: 200px; word-wrap: break-word; overflow-y: auto;">{text}</div>',
     # <div style="width: 40em;height: auto;word-wrap: break-word;white-space: break-spaces;overflow: scroll;">
     # Disney's fourth quarter performance was strong, with operating income increasing by $1.6 billion year-over-year. All of Disney's sites were open for the entire quarter, although generally at reduced capacities. Attendance trends continued to strengthen at Disney's domestic parks, with Walt Disney World Q4 attendance up double-digits versus Q3, and Disneyland attendance continuing to strengthen significantly from its reopening in the third quarter. Guest spending at Disney's domestic parks was up nearly 30% versus fiscal 2019. Disney Cruise Line returned to sea with guest ratings as strong as pre-pandemic levels. Disney's Media and Entertainment Distribution segment saw a decrease in operating income of approximately $600 million versus the prior year, driven by lower results at Linear Networks, Direct-to-Consumer and content sales, licensing, and other. Consumer Products operating results declined in the fourth quarter, impacted by a tough comparison in Disney's games business.</div>
@@ -224,11 +227,10 @@ if st.button("Run Query") and text is not None:
         st.markdown(
             f"Embedding Tokens Used: {preloaded_index.service_context.embed_model._last_token_usage}"
         )
-# else:
-#     print("Checking stuff")
-#     print(text)
-#     print("******END*******")
 
+clear_history = st.button("Clear History")
+if clear_history:
+    chat_history = []
 # if 'response' not in st.session_state:
 #     st.session_state.response = ''
 
