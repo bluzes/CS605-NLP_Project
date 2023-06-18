@@ -81,9 +81,11 @@ pre_loaded_documents_folder = "./datasets/preloaded/small"
 documents_folder = "./datasets/csv"
 def preload_index():
     documents = SimpleDirectoryReader(pre_loaded_documents_folder).load_data()
+    llm_predictor_chatgpt = LLMPredictor(llm=ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo"))
+    service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor_chatgpt, chunk_size=2048)
     try:
         storage_context = StorageContext.from_defaults(persist_dir=index_name)
-        index = load_index_from_storage("36150b1e-84d5-4184-ba95-3e107970e716") # this index should contain the full documents from through documents 1 & 2
+        index = load_index_from_storage(storage_context,index_id="Pre_Loaded_Small_2_Docs") # this index should contain the full documents from through documents 1 & 2
         doc_summary_index = load_index_from_storage(storage_context, index_id ="3a995849-05eb-433a-8b81-7155b52c33c5") # this index should contain the summary
         print("Index and Doc Summary Index Loaded")
         return index, doc_summary_index
