@@ -96,7 +96,7 @@ def preload_index():
         # doc_summary_index = load_index_from_storage(storage_context, index_id ="3a995849-05eb-433a-8b81-7155b52c33c5") # this index should contain the summary
         print("Loaded")
         print("Checking if index is properly loaded")
-        print(index.docstore.docs)
+        print(index)
         print("----- End of Check -------")
         st.write("Index and Doc Summary Index Loaded")
         return index
