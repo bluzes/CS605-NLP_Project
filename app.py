@@ -45,18 +45,18 @@ if file is not None:
     # Process the uploaded file
     # Your code here
 
-process_button = st.button("Process")
+# process_button = st.button("Process")
 
-    llm_col, embed_col = st.columns(2)
-    with llm_col:
-        st.markdown(
-            f"\nLLM Tokens Used: {preloaded_index.service_context.llm_predictor._last_token_usage}"
-        )
+#     llm_col, embed_col = st.columns(2)
+#     with llm_col:
+#         st.markdown(
+#             f"\nLLM Tokens Used: {preloaded_index.service_context.llm_predictor._last_token_usage}"
+#         )
 
-    with embed_col:
-        st.markdown(
-            f"Embedding Tokens Used: {preloaded_index.service_context.embed_model._last_token_usage}"
-        )
+#     with embed_col:
+#         st.markdown(
+#             f"Embedding Tokens Used: {preloaded_index.service_context.embed_model._last_token_usage}"
+#         )
 # Two separated text box inputs
 # input1 = st.text_input('Enter text input 1')
 # input2 = st.text_input('Enter text input 2')
