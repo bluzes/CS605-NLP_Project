@@ -34,9 +34,6 @@ st.header('Finasse')
 # Title
 st.title('Welcome to Finasse! Your personal Financial Assistant for your analytics needs.')
 
-# Placeholder body content
-st.write('This is the body of my app.')
-
 # File uploader
 file = st.file_uploader('Upload a file')
 
