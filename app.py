@@ -32,7 +32,7 @@ logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 st.header('Finasse')
 
 # Title
-st.title('Welcome to Finasse! Your personal Financial Assistant for analysis')
+st.title('Welcome to Finasse! Your personal Financial Assistant for your analytics needs.')
 
 # Placeholder body content
 st.write('This is the body of my app.')
