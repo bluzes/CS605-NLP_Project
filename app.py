@@ -45,9 +45,21 @@ if file is not None:
     # Process the uploaded file
     # Your code here
 
+process_button = st.button("Process")
+
+    llm_col, embed_col = st.columns(2)
+    with llm_col:
+        st.markdown(
+            f"\nLLM Tokens Used: {preloaded_index.service_context.llm_predictor._last_token_usage}"
+        )
+
+    with embed_col:
+        st.markdown(
+            f"Embedding Tokens Used: {preloaded_index.service_context.embed_model._last_token_usage}"
+        )
 # Two separated text box inputs
-input1 = st.text_input('Enter text input 1')
-input2 = st.text_input('Enter text input 2')
+# input1 = st.text_input('Enter text input 1')
+# input2 = st.text_input('Enter text input 2')
 # submit1 = st.button('Submit1')
 # submit2 = st.button('Submit2')
 
@@ -195,22 +207,22 @@ if 'chat_history' not in st.session_state:
 
 text = st.text_input("Query text:", value="Keypoints of Disney Q4 performance")
 
-col3, col4 = st.columns(2)
+# col3, col4 = st.columns(2)
 
 
-def print_chat_history():
-    for chat in st.session_state.chat_history:
-        for k in chat.keys():
-            col4.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {k}</div>',unsafe_allow_html=True)
-            col4.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {chat[k]}</div>',unsafe_allow_html=True)
+# def print_chat_history():
+#     for chat in st.session_state.chat_history:
+#         for k in chat.keys():
+#             col4.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {k}</div>',unsafe_allow_html=True)
+#             col4.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {chat[k]}</div>',unsafe_allow_html=True)
 if st.button("Run Query") and text is not None:
     print("Checking if index is working")
     query_engine = preloaded_index.as_query_engine(response_mode= selected_value,verbose=True,similarity_top_k=k_value)
     response = query_engine.query(text)
     st.session_state.chat_history.append({text:response})
 
-    col3.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
-    col3.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
+    st.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
+    st.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
 
     #     f'<div style="width: 300px; height: 200px; word-wrap: break-word; overflow-y: auto;">{text}</div>',
     # <div style="width: 40em;height: auto;word-wrap: break-word;white-space: break-spaces;overflow: scroll;">
@@ -236,12 +248,11 @@ if st.button("Run Query") and text is not None:
         st.markdown(
             f"Embedding Tokens Used: {preloaded_index.service_context.embed_model._last_token_usage}"
         )
-    print_chat_history()
 
 
-clear_history = st.button("Clear History")
-if st.session_state.chat_history:
-    st.session_state.chat_history = []
+# clear_history = st.button("Clear History")
+# if st.session_state.chat_history:
+#     st.session_state.chat_history = []
 
 
 # if 'response' not in st.session_state:
