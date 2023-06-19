@@ -221,8 +221,8 @@ if st.button("Run Query") and text is not None:
     response = query_engine.query(text)
     st.session_state.chat_history.append({text:response})
 
-    st.markdown(f'<div style="width: 20em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
-    st.markdown(f'<div style="width: 20em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
+    st.markdown(f'<div style="width: 40em; height: auto; word-wrap: break-word; overflow-y: auto;">You: {text}</div>',unsafe_allow_html=True)
+    st.markdown(f'<div style="width: 40em; height: 200px; word-wrap: break-word; overflow-y: auto;">Finasse: {response}</div>',unsafe_allow_html=True)
 
     #     f'<div style="width: 300px; height: 200px; word-wrap: break-word; overflow-y: auto;">{text}</div>',
     # <div style="width: 40em;height: auto;word-wrap: break-word;white-space: break-spaces;overflow: scroll;">
