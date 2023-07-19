@@ -1,4 +1,8 @@
 # Natural Language Generation (NLG) for Earning Calls Transcript Information extraction
+- Earnings conference calls offer rich information about the company’s management views on key performance drivers, macroeconomic and future outlooks. 
+- Professionals can gain valuable insights to understand the overall economic performance and outlook.
+- However it is time consuming to extract insights due to large amount of text present in an earning call transcript and the large number of public traded companies
+- This seeks to speed up information extraction by summarizing the document, generate key topics and sentiments
 # Project Directory Structure
 ```
 ├── datasets/preloaded/small          <- datasets used
